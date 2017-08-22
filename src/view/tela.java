@@ -34,9 +34,12 @@ public class tela extends JFrame {
 			private final JPanel cor7 = new JPanel();
 			private final JPanel cor8 = new JPanel();
 			private final JPanel cor9 = new JPanel();
+			private final JPanel [] cores;
+			private final JPanel panelProgresso = new JPanel();
 				
 	public tela() {
 				super("Gerador de Palheta de cores");
+				panelProgresso.setBackground(Color.WHITE);
 				cor1.setBackground(Color.WHITE);
 				cor2.setBackground(Color.WHITE);
 				cor3.setBackground(Color.WHITE);
@@ -46,6 +49,17 @@ public class tela extends JFrame {
 				cor7.setBackground(Color.WHITE);
 				cor8.setBackground(Color.WHITE);
 				cor9.setBackground(Color.WHITE);
+				cores = new JPanel[9];
+				cores[0] = cor1;
+				cores[1] = cor2;
+				cores[2] = cor3;
+				cores[3] = cor4;
+				cores[4] = cor5;
+				cores[5] = cor6;
+				cores[6] = cor7;
+				cores[7] = cor8;
+				cores[8] = cor9;
+				
 				menuprincipal();
 				adicionatela();
 				Janela.setMinimumSize(new Dimension(800, 600));
@@ -78,12 +92,14 @@ public class tela extends JFrame {
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
 								.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-							.addGap(408))
+							.addGap(113)
+							.addComponent(panelProgresso, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addGap(165))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(24)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(btnNewButton_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(cor1, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(cor2, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
@@ -107,11 +123,17 @@ public class tela extends JFrame {
 					groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-							.addGap(30)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton)
-							.addGap(92)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(30)
+									.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnNewButton)
+									.addGap(61))
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+									.addComponent(panelProgresso, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+									.addGap(50)))
 							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -141,8 +163,11 @@ public class tela extends JFrame {
 		sairAction.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	System.exit(0);
+            	
             }
         });
+		
+		
 	}
 			
 	private void menuprincipal(){
@@ -155,4 +180,20 @@ public class tela extends JFrame {
 	private void addmenu(JMenuItem filho, JMenu pai){
 		pai.add(filho);
 	}
+	
+	public void setaCorDegrade(int [] cores) {
+		
+		
+		for (int i =0; i<9; i++) {
+			this.cores[i].setBackground(new Color(cores[i]));
+			this.cores[i].repaint();
+		}
+		
+	}
+	public void setaCorProgresso(int cor) {
+		
+		this.panelProgresso.setBackground(new Color(cor));
+		this.panelProgresso.repaint();
+	}
+	
 }

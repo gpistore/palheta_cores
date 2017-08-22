@@ -58,7 +58,7 @@ public class Populacao {
         while (trocou) {
             trocou = false;
             for (int i = 0; i < individuos.length - 1; i++) {
-                if (individuos[i].getAptidao() < individuos[i + 1].getAptidao()) {
+                if (individuos[i].getAptidao() > individuos[i + 1].getAptidao()) {
                     Individuo temp = individuos[i];
                     individuos[i] = individuos[i + 1];
                     individuos[i + 1] = temp;
@@ -66,6 +66,9 @@ public class Populacao {
                 }
             }
         }
+        
+      
+        
     }
 
     //número de indivíduos existentes na população
