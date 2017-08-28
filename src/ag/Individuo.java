@@ -18,7 +18,7 @@ public class Individuo {
         for (int i = 0; i < numGenes; i++) {
             genes += caracteres.charAt(r.nextInt(caracteres.length()));
         }
-        
+     
         geraAptidao();        
     }
 
@@ -45,54 +45,39 @@ public class Individuo {
         geraAptidao();
     }
 
-    /*gera o valor de aptidão, será calculada pelo número de bits do gene iguais ao da solução
-    private void geraAptidao() {
-        String solucao = Algoritmo.getSolucao();
-        for (int i = 0; i < solucao.length(); i++) {
-            if (solucao.charAt(i) == genes.charAt(i)) {
-                aptidao++;
-            }
-        }
-        System.out.println(genes+" | Aptidao = "+aptidao);
-    }*/
+   
     
-    
+  
     //Realiza o calculo de aptidao e quanto MENOR a aptidao, mais proximas sao as cores
     //https://stackoverflow.com/questions/2103368/color-logic-algorithm
     private void geraAptidao() {
     
-    	int iSolucao = Integer.parseInt(Algoritmo.getSolucao(),2);       
-    	int iGenes = Integer.parseInt(genes,2);
-       
+    	int[]iSolucao = converte(Algoritmo.getSolucao());
+    	int []iGenes = converte(genes);
+    	Color[] cSolucao = new Color[5];
+    	Color[] cGenes = new Color[5];
     	
-    	Color cSolucao = new Color (iSolucao, true);
-    	Color cGenes = new Color (iGenes, true);
-    	
-    	//System.out.println(cSolucao.toString());
-    	
-    	
-    	double rmean = ( cSolucao.getRed() + cGenes.getRed() )/2;
-    	  int r = cSolucao.getRed() - cGenes.getRed();
-    	  int g = cSolucao.getGreen() - cGenes.getGreen();
-    	  int b = cSolucao.getBlue() - cGenes.getBlue();
-    	  double weightR = 2 + rmean/256;
-    	  double weightG = 4.0;
-    	  double weightB = 2 + (255-rmean)/256;
-    	  aptidao = (int) Math.sqrt(weightR*r*r + weightG*g*g + weightB*b*b);
-    	  
-    	  //Calula luminosidade
-    	  int lumin = iGenes;
-    	  luminosidade = (   77  * ((lumin>>16)&255) 
-                  + 150 * ((lumin>>8)&255) 
-                  + 29  * ((lumin)&255))>>8;
-    	  
-    	  
-    	  System.out.println(cGenes.toString()+" | Aptidao = "+aptidao+" | Lumin = "+luminosidade);
-    	  
-    	
-    	  
-    	  
-    	  
+    	for (int i =0; i<5;i++){
+    		cSolucao[i] = new Color(iSolucao[i],true);
+    	}
+    	for (int i =0; i<5;i++){
+    		cGenes[i] = new Color(iGenes[i],true);
+    	}
+    	for (int i = 0; i<5;i++ ){
+    		
+    		double rmean = ( cSolucao[i].getRed() + cGenes[i].getRed() )/2;
+    		int r = cSolucao[i].getRed() - cGenes[i].getRed();
+    		int g = cSolucao[i].getGreen() - cGenes[i].getGreen();
+    		int b = cSolucao[i].getBlue() - cGenes[i].getBlue();
+    		double weightR = 2 + rmean/256;
+    		double weightG = 4.0;
+    		double weightB = 2 + (255-rmean)/256;
+    	 
+    		int tmpAptidao = (int) Math.sqrt(weightR*r*r + weightG*g*g + weightB*b*b);
+    		if (tmpAptidao > aptidao ) {
+    			aptidao = tmpAptidao;
+    		}
+    	}
     	  
     }
     public int getAptidao() {
@@ -105,5 +90,17 @@ public class Individuo {
     
     public int getLuminosidade() {
     	return luminosidade;
+    }
+    public int[] converte(String cores){
+		
+    	int[] vetCor = new int[5];
+    	int ind = 0;
+    	
+    	for (int i =0; i< 5; i++){
+			for (int j = 0; j < 5; j++){
+				vetCor[j] =Integer.parseInt(cores.substring((j*24),(j*24)+24),2);
+			}
+		}
+		return vetCor;
     }
 }

@@ -8,8 +8,10 @@ public class Algoritmo {
     private static double taxaDeMutacao;
     private static String caracteres;
 
+    
     public static Populacao novaGeracao(Populacao populacao, boolean elitismo) {
         Random r = new Random();
+        
         //nova população do mesmo tamanho da antiga
         Populacao novaPopulacao = new Populacao(populacao.getTamPopulacao());
 
@@ -28,6 +30,7 @@ public class Algoritmo {
             //verifica a taxa de crossover, se sim realiza o crossover, se não, mantém os pais selecionados para a próxima geração
             if (r.nextDouble() <= taxaDeCrossover) {
                 filhos = crossover(pais[1], pais[0]);
+                
             } else {
                 filhos[0] = new Individuo(pais[0].getGenes());
                 filhos[1] = new Individuo(pais[1].getGenes());
@@ -40,6 +43,7 @@ public class Algoritmo {
 
         //ordena a nova população
         novaPopulacao.ordenaPopulacao();
+        
         return novaPopulacao;
     }
 
@@ -75,6 +79,9 @@ public class Algoritmo {
         return filhos;
     }
 
+    
+        
+    
     public static Individuo[] selecaoTorneio(Populacao populacao) {
         Random r = new Random();
         Populacao populacaoIntermediaria = new Populacao(3);
@@ -93,6 +100,7 @@ public class Algoritmo {
         pais[0] = populacaoIntermediaria.getIndividuo(0);
         pais[1] = populacaoIntermediaria.getIndividuo(1);
 
+ 
         return pais;
     }
 
@@ -127,6 +135,4 @@ public class Algoritmo {
     public static void setCaracteres(String caracteres) {
         Algoritmo.caracteres = caracteres;
     }
-    
-    
 }

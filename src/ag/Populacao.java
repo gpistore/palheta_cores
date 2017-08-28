@@ -47,8 +47,10 @@ public class Populacao {
             }
         }
         if (i == null) {
+        	
             return false;
         }
+    
         return true;
     }
 
@@ -65,10 +67,7 @@ public class Populacao {
                     trocou = true;
                 }
             }
-        }
-        
-      
-        
+        }   
     }
 
     //número de indivíduos existentes na população

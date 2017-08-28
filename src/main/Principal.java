@@ -1,5 +1,6 @@
 package main;
 import java.awt.Color;
+import java.text.DecimalFormat;
 
 import ag.*;
 import view.tela;
@@ -8,117 +9,114 @@ public class Principal {
 	
 	tela telaMain;
 	
-	public Principal() {
-		
-		telaMain = new tela();
-		
-		
+	public Principal() {	
+				
 	}
 	
 	
-	public int[] configurar(){
+	public String converteVetIntString(int vetCor[]){
+		String conversao = "";
 		
-
-    	// RGB = 65536 * r + 256 * g + b;
-
+		for (int i =0; i< 5; i++){
+			String temp = Integer.toBinaryString(vetCor[i]);
+			int cond = temp.length();
+			for (int j = 0; j < 24 - cond; j++){
+				temp = 0+temp;
+			}
+			conversao = conversao + temp;
+		}
+		return conversao;
+	}
+	
+	public int[] converteVetCorVetInt(Color vetCor[]){
+		
+		int[] intCores = new int[5];
+	
+		for (int i=0; i<5;i++) {
+			intCores[i] = 65536 * vetCor[i].getRed() + 256 * vetCor[i].getGreen() + vetCor[i].getBlue();
+		}
+		
+		return intCores;
+	}
+	
+	public int[] converteStringVetInt(String cores){
+			
+	    	int[] vetCor = new int[5];
+	    	int ind = 0;
+	    	
+			for (int i =0; i< 5; i++){
+				for (int j = 0; j < 5; j++){
+					vetCor[j] =Integer.parseInt(cores.substring((j*24),(j*24)+24),2);
+				}
+			}
+			return vetCor;
+	}
+	
+	public Color[] converteStringVetCor (String cores) {
+		
+		int[] vetInt = converteStringVetInt(cores);
+		Color [] vetCor = new Color[5];
+		
+		for (int i=0; i<5; i++) {
+			vetCor[i] = new Color(vetInt[i]);
+		}
+		
+		return vetCor;
+	}
+	
+	
+	public Color[] execucao(Color[] colors, String caract, double crossover, double mutacao, boolean elitismo, int tamPopulacao, int numGeracao){
+		
+		
+		
+		int[] colorsSolutions = converteVetCorVetInt(colors);
+		   	
+		
+    	String solucao = converteVetIntString(colorsSolutions);
     	
-    	//Define a solução
-    	int colorSolution = 65536 * 255 + 256 * 255 + 0;
-        Algoritmo.setSolucao(Integer.toBinaryString(colorSolution));
-        //Define os caracteres existentes
-        Algoritmo.setCaracteres("1001");
-        //taxa de crossover de 60% - diminui o crossover para pegar os melhores. 0.99
-        Algoritmo.setTaxaDeCrossover(0.1);
-        //taxa de mutação de 3% 0.5
-        Algoritmo.setTaxaDeMutacao(0.8);
-        //elitismo
-        boolean eltismo = true;
-        //tamanho da população 200
-        int tamPop = 50;
-        //numero mÃ¡ximo de gerações
-        int numMaxGeracoes = 150;
-
-        //define o nÃºmero de genes do indivÃ­duo baseado na solução
+    	
+    	Algoritmo.setSolucao(solucao);
+        Algoritmo.setCaracteres(caract);
+        
+        Algoritmo.setTaxaDeCrossover(crossover);
+        Algoritmo.setTaxaDeMutacao(mutacao);
+        boolean eltismo = elitismo;
+        int tamPop = tamPopulacao;
+        int numMaxGeracoes = numGeracao;
         int numGenes = Algoritmo.getSolucao().length();
 
-        //cria a primeira população aleatÃ©rioa
+        //cria a primeira populacao aleatorio
         Populacao populacao = new Populacao(numGenes, tamPop);
 
         boolean temSolucao = false;
         int geracao = 0;
 
-        System.out.println("Iniciando... Aptidão da solução: "+Algoritmo.getSolucao().length());
-        
-        //loop atÃ© o critÃ©rio de parada
         while (!temSolucao && geracao < numMaxGeracoes) {
-            geracao++;
 
-            //cria nova populacao
+        	geracao++;
             populacao = Algoritmo.novaGeracao(populacao, eltismo);
-
-            System.out.println("Geração " + geracao + " | Aptidão: " + populacao.getIndividuo(0).getAptidao() + " | Melhor: " + populacao.getIndividuo(0).getGenes());
             
-            //Printa na tela o progresso
-            telaMain.setaCorProgresso(Integer.parseInt(populacao.getIndividuo(0).getGenes(),2));
+            Color[] vetIteracao = converteStringVetCor(populacao.getIndividuo(0).getGenes());
+        
+            for (int i =0; i < 5; i++) {
+            	tela.coresSolucao[i].setBackground(vetIteracao[i]);
+            }
             
-            try {
-				Thread.currentThread().sleep(200);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            
-            //verifica se tem a solucao
+            tela.tfStatus.setText("Aguarde! Geração "+geracao+" (Aptidão = "+populacao.getIndividuo(0).getAptidao()+")");
+              
             temSolucao = populacao.temSolucao(Algoritmo.getSolucao());
         }
 
         if (geracao == numMaxGeracoes) {
-            System.out.println("NÃºmero Maximo de Gerações | " + populacao.getIndividuo(0).getGenes() + " " + populacao.getIndividuo(0).getAptidao());
+        	tela.tfStatus.setText("Não convergiu para a solução com os parâmetros informados");
+        	return null;
         }
 
         if (temSolucao) {
-            System.out.println("Encontrado resultado na geração " + geracao + " | " + populacao.getIndividuo(0).getGenes() + " (AptidÃ£o: " + populacao.getIndividuo(0).getAptidao() + ")");
+        	Color[] vetResultado = converteStringVetCor(populacao.getIndividuo(0).getGenes());
+        	tela.tfStatus.setText("Convergiu na geração "+geracao);
+        	return vetResultado;
         }
-        
-        
-        System.out.println("------------------------------------");
-        System.out.println("Melhores individuos para a palheta");
-        System.out.println("------------------------------------");
-        
-       	int[] results = new int[9];
-        
-        for (int i = 0; i<9; i++) {
-        
-        	int iGen = Integer.parseInt(populacao.getIndividuo(i).getGenes(),2);
-           
-        	Color cGen = new Color (iGen, true);
-        	results[i] = iGen;
-        	
-        	System.out.println(cGen.toString()+" |Aptidao = "+populacao.getIndividuo(i).getAptidao()+" | Lumin = "+populacao.getIndividuo(i).getLuminosidade() );
-        }
-        System.out.println("------------------------------------");
-        
-        
-        return results;
-		
+        return null;
 	}
-
-    public static void main(String[] args) {
-    	
-    		
-    		
-    		main.Principal algoritmo = new Principal();
-    		
-    		int [] results = algoritmo.configurar();
-    		
-    		
-    		algoritmo.telaMain.setaCorDegrade(results);
-    		
-    	
-    		
-    }
 }
-
-   
-
-
