@@ -178,38 +178,38 @@ public class tela extends JFrame {
 				
 		tfCaracteres = new JTextField();
 		tfCaracteres.setText("01");
-		tfCaracteres.setBounds(199, 129, 90, 20);
+		tfCaracteres.setBounds(162, 129, 90, 20);
 		Janela.getContentPane().add(tfCaracteres);
 		tfCaracteres.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("String caracteres");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(70, 129, 117, 20);
+		lblNewLabel.setBounds(35, 129, 117, 20);
 		Janela.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Crossover");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(126, 159, 65, 20);
+		lblNewLabel_1.setBounds(35, 159, 117, 20);
 		Janela.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Muta\u00E7\u00E3o");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_2.setBounds(136, 189, 51, 20);
+		lblNewLabel_2.setBounds(35, 190, 117, 20);
 		Janela.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("Tamanho popula\u00E7\u00E3o");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setBounds(320, 129, 108, 20);
+		lblNewLabel_4.setBounds(275, 129, 153, 20);
 		Janela.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("N\u00FAmeros gera\u00E7\u00F5es");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5.setBounds(320, 159, 108, 20);
+		lblNewLabel_5.setBounds(275, 159, 153, 20);
 		Janela.getContentPane().add(lblNewLabel_5);
 		
 		tfMutacao = new JTextField();
 		tfMutacao.setText("0.2");
-		tfMutacao.setBounds(199, 189, 90, 20);
+		tfMutacao.setBounds(162, 190, 90, 20);
 		Janela.getContentPane().add(tfMutacao);
 		tfMutacao.setColumns(10);
 		
@@ -237,7 +237,7 @@ public class tela extends JFrame {
 		
 		tfCrossover = new JTextField();
 		tfCrossover.setText("0.99");
-		tfCrossover.setBounds(199, 159, 86, 20);
+		tfCrossover.setBounds(162, 159, 90, 20);
 		Janela.getContentPane().add(tfCrossover);
 		tfCrossover.setColumns(10);
 		
@@ -253,7 +253,7 @@ public class tela extends JFrame {
 		
 		JLabel lblVelocidadeExibio = new JLabel("Velocidade execu\u00E7\u00E3o");
 		lblVelocidadeExibio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblVelocidadeExibio.setBounds(299, 192, 129, 14);
+		lblVelocidadeExibio.setBounds(275, 192, 153, 14);
 		Janela.getContentPane().add(lblVelocidadeExibio);
 		
 		
