@@ -65,7 +65,7 @@ public class Principal {
 	}
 	
 	
-	public Color[] execucao(Color[] colors, String caract, double crossover, double mutacao, boolean elitismo, int tamPopulacao, int numGeracao){
+	public Color[] execucao(Color[] colors, String caract, double crossover, double mutacao, boolean elitismo, int tamPopulacao, int numGeracao, long timeThread){
 		
 		
 		
@@ -107,6 +107,16 @@ public class Principal {
           
               
             temSolucao = populacao.temSolucao(Algoritmo.getSolucao());
+            
+            
+            //Thread que controla velocidade execucao
+            try {
+                Thread.sleep(timeThread);
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            
+            
         }
 
         if (geracao == numMaxGeracoes) {

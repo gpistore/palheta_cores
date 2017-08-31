@@ -44,7 +44,7 @@ public class tela extends JFrame {
     private JTextField tfNumGer;
     private JTextField tfCrossover;
     JCheckBox cbElitismo = new JCheckBox("");
-    private JTextField textField;
+    private JTextField tfVelocidade;
 			
 	public tela() {
 		super("Gerador de Palheta de cores");
@@ -207,13 +207,13 @@ public class tela extends JFrame {
 		Janela.getContentPane().add(lblNewLabel_5);
 		
 		tfMutacao = new JTextField();
-		tfMutacao.setText("0.6");
+		tfMutacao.setText("0.2");
 		tfMutacao.setBounds(199, 189, 90, 20);
 		Janela.getContentPane().add(tfMutacao);
 		tfMutacao.setColumns(10);
 		
 		tfTamPop = new JTextField();
-		tfTamPop.setText("2000");
+		tfTamPop.setText("500");
 		tfTamPop.setBounds(438, 129, 90, 20);
 		Janela.getContentPane().add(tfTamPop);
 		tfTamPop.setColumns(10);
@@ -244,12 +244,13 @@ public class tela extends JFrame {
 		btnSugestao.setBounds(635, 110, 130, 29);
 		Janela.getContentPane().add(btnSugestao);
 		
-		textField = new JTextField();
-		textField.setBounds(438, 189, 90, 20);
-		Janela.getContentPane().add(textField);
-		textField.setColumns(10);
+		tfVelocidade = new JTextField();
+		tfVelocidade.setText("200");
+		tfVelocidade.setBounds(438, 189, 90, 20);
+		Janela.getContentPane().add(tfVelocidade);
+		tfVelocidade.setColumns(10);
 		
-		JLabel lblVelocidadeExibio = new JLabel("Velocidade exibi\u00E7\u00E3o");
+		JLabel lblVelocidadeExibio = new JLabel("Velocidade execu\u00E7\u00E3o");
 		lblVelocidadeExibio.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblVelocidadeExibio.setBounds(299, 192, 129, 14);
 		Janela.getContentPane().add(lblVelocidadeExibio);
@@ -282,7 +283,7 @@ public class tela extends JFrame {
 		    public void run()
 		    {
 		    	Color[] result = p.execucao(solucao, tfCaracteres.getText(), Double.parseDouble(tfCrossover.getText()),
-		    	Double.parseDouble(tfMutacao.getText()), cbElitismo.isSelected(),  Integer.parseInt(tfTamPop.getText()),  Integer.parseInt(tfNumGer.getText()));
+		    	Double.parseDouble(tfMutacao.getText()), cbElitismo.isSelected(),  Integer.parseInt(tfTamPop.getText()),  Integer.parseInt(tfNumGer.getText()),Long.parseLong(tfVelocidade.getText()));
 		    }});  
 		    t1.start();
 	}
