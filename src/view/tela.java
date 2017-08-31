@@ -35,6 +35,7 @@ public class tela extends JFrame {
 	public static JPanel [] coresSolucao;
 	private final JPanel panelProgresso = new JPanel();
 	private final JPanel panelcor1,panelcor2,panelcor3,panelcor4,panelcor5;
+	private final JPanel panelresult1,panelresult2,panelresult3,panelresult4,panelresult5;
 	private Color color = Color.LIGHT_GRAY;
 	private JPanel colorJPanel;
     public static JTextField tfStatus;
@@ -137,32 +138,32 @@ public class tela extends JFrame {
 		btncalcular.setBounds(35, 235, 730, 35);
 		Janela.getContentPane().add(btncalcular);
 		
-		JPanel panelresult1 = new JPanel();
+		panelresult1 = new JPanel();
 		panelresult1.setBackground(Color.WHITE);
 		panelresult1.setBounds(35, 323, 130, 218);
 		Janela.getContentPane().add(panelresult1);
 		coresSolucao[0] = panelresult1;
 		
-		JPanel panelresult2 = new JPanel();
+		panelresult2 = new JPanel();
 		panelresult2.setBackground(Color.WHITE);
 		panelresult2.setBounds(185, 323, 130, 218);
 		Janela.getContentPane().add(panelresult2);
 		coresSolucao[1] = panelresult2;
 		
-		JPanel panelresult3 = new JPanel();
+		panelresult3 = new JPanel();
 		panelresult3.setBackground(Color.WHITE);
 		panelresult3.setBounds(335, 323, 130, 218);
 		Janela.getContentPane().add(panelresult3);
 		coresSolucao[2] = panelresult3;
 		
-		JPanel panelresult4 = new JPanel();
+		panelresult4 = new JPanel();
 		panelresult4.setBackground(Color.WHITE);
 		panelresult4.setBounds(485, 323, 130, 218);
 		Janela.getContentPane().add(panelresult4);
 		coresSolucao[3] = panelresult4;
 		
 		
-		JPanel panelresult5 = new JPanel();
+		panelresult5 = new JPanel();
 		panelresult5.setBackground(Color.WHITE);
 		panelresult5.setBounds(635, 323, 130, 218);
 		Janela.getContentPane().add(panelresult5);
@@ -344,6 +345,22 @@ public class tela extends JFrame {
 				janelaSobre.setVisible(true);            	
 	        }
         });
+		
+		novoAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelcor1.setBackground(Color.WHITE);
+				panelcor2.setBackground(Color.WHITE);
+				panelcor3.setBackground(Color.WHITE);
+				panelcor4.setBackground(Color.WHITE);
+				panelcor5.setBackground(Color.WHITE);
+				panelresult1.setBackground(Color.WHITE);
+				panelresult2.setBackground(Color.WHITE);
+				panelresult3.setBackground(Color.WHITE);
+				panelresult4.setBackground(Color.WHITE);
+				panelresult5.setBackground(Color.WHITE);
+				tfStatus.setText("");
+	        }
+        });		
 		
 	}
 			
