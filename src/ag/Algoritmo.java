@@ -46,7 +46,6 @@ public class Algoritmo {
         
         return novaPopulacao;
     }
-
     public static Individuo[] crossover(Individuo individuo1, Individuo individuo2) {
         Random r = new Random();
 
@@ -79,6 +78,7 @@ public class Algoritmo {
         return filhos;
     }
 
+   
     
         
     
@@ -90,7 +90,9 @@ public class Algoritmo {
         populacaoIntermediaria.setIndividuo(populacao.getIndividuo(r.nextInt(populacao.getTamPopulacao())));
         populacaoIntermediaria.setIndividuo(populacao.getIndividuo(r.nextInt(populacao.getTamPopulacao())));
         populacaoIntermediaria.setIndividuo(populacao.getIndividuo(r.nextInt(populacao.getTamPopulacao())));
-
+        
+     
+        
         //ordena a população
         populacaoIntermediaria.ordenaPopulacao();
 

@@ -50,7 +50,7 @@ public class Individuo {
   
     //Realiza o calculo de aptidao e quanto MENOR a aptidao, mais proximas sao as cores
     //https://stackoverflow.com/questions/2103368/color-logic-algorithm
-    private void geraAptidao() {
+    private void geraAptidao2() {
     
     	int[]iSolucao = converte(Algoritmo.getSolucao());
     	int []iGenes = converte(genes);
@@ -79,6 +79,15 @@ public class Individuo {
     		}
     	}
     	  
+    }
+    
+    private void geraAptidao() {
+        String solucao = Algoritmo.getSolucao();
+        for (int i = 0; i < solucao.length(); i++) {
+            if (solucao.charAt(i) == genes.charAt(i)) {
+                aptidao++;
+            }
+        }
     }
     public int getAptidao() {
         return aptidao;

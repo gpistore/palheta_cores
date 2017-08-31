@@ -44,6 +44,7 @@ public class tela extends JFrame {
     private JTextField tfNumGer;
     private JTextField tfCrossover;
     JCheckBox cbElitismo = new JCheckBox("");
+    private JTextField textField;
 			
 	public tela() {
 		super("Gerador de Palheta de cores");
@@ -176,72 +177,82 @@ public class tela extends JFrame {
 				
 		tfCaracteres = new JTextField();
 		tfCaracteres.setText("01");
-		tfCaracteres.setBounds(226, 130, 90, 20);
+		tfCaracteres.setBounds(199, 129, 90, 20);
 		Janela.getContentPane().add(tfCaracteres);
 		tfCaracteres.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("String caracteres");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(97, 130, 117, 20);
+		lblNewLabel.setBounds(70, 129, 117, 20);
 		Janela.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Crossover");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(153, 160, 65, 20);
+		lblNewLabel_1.setBounds(126, 159, 65, 20);
 		Janela.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Muta\u00E7\u00E3o");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_2.setBounds(163, 190, 51, 20);
+		lblNewLabel_2.setBounds(136, 189, 51, 20);
 		Janela.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("Tamanho popula\u00E7\u00E3o");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setBounds(340, 160, 108, 20);
+		lblNewLabel_4.setBounds(320, 129, 108, 20);
 		Janela.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("N\u00FAmeros gera\u00E7\u00F5es");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5.setBounds(345, 190, 108, 20);
+		lblNewLabel_5.setBounds(320, 159, 108, 20);
 		Janela.getContentPane().add(lblNewLabel_5);
 		
 		tfMutacao = new JTextField();
 		tfMutacao.setText("0.6");
-		tfMutacao.setBounds(226, 190, 90, 20);
+		tfMutacao.setBounds(199, 189, 90, 20);
 		Janela.getContentPane().add(tfMutacao);
 		tfMutacao.setColumns(10);
 		
 		tfTamPop = new JTextField();
 		tfTamPop.setText("2000");
-		tfTamPop.setBounds(463, 160, 90, 20);
+		tfTamPop.setBounds(438, 129, 90, 20);
 		Janela.getContentPane().add(tfTamPop);
 		tfTamPop.setColumns(10);
 		
 		tfNumGer = new JTextField();
 		tfNumGer.setText("1000");
-		tfNumGer.setBounds(463, 190, 90, 20);
+		tfNumGer.setBounds(438, 159, 90, 20);
 		Janela.getContentPane().add(tfNumGer);
 		tfNumGer.setColumns(10);
 		
 		
 		cbElitismo.setSelected(true);
-		cbElitismo.setBounds(463, 130, 97, 23);
+		cbElitismo.setBounds(624, 189, 97, 23);
 		Janela.getContentPane().add(cbElitismo);
 		
 		JLabel lblElitismo = new JLabel("Elitismo");
 		lblElitismo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblElitismo.setBounds(394, 130, 54, 20);
+		lblElitismo.setBounds(555, 189, 54, 20);
 		Janela.getContentPane().add(lblElitismo);
 		
 		tfCrossover = new JTextField();
 		tfCrossover.setText("0.99");
-		tfCrossover.setBounds(226, 160, 86, 20);
+		tfCrossover.setBounds(199, 159, 86, 20);
 		Janela.getContentPane().add(tfCrossover);
 		tfCrossover.setColumns(10);
 		
 		JButton btnSugestao = new JButton("Sugerir cores");
 		btnSugestao.setBounds(635, 110, 130, 29);
 		Janela.getContentPane().add(btnSugestao);
+		
+		textField = new JTextField();
+		textField.setBounds(438, 189, 90, 20);
+		Janela.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblVelocidadeExibio = new JLabel("Velocidade exibi\u00E7\u00E3o");
+		lblVelocidadeExibio.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblVelocidadeExibio.setBounds(299, 192, 129, 14);
+		Janela.getContentPane().add(lblVelocidadeExibio);
 		
 		
 		

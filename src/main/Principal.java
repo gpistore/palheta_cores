@@ -103,6 +103,8 @@ public class Principal {
             }
             
             tela.tfStatus.setText("Aguarde! Geração "+geracao+" (Aptidão = "+populacao.getIndividuo(0).getAptidao()+")");
+            
+          
               
             temSolucao = populacao.temSolucao(Algoritmo.getSolucao());
         }
